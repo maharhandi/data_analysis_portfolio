@@ -102,7 +102,8 @@ project-1/
 │
 ├── dashboard/
 │   ├── European_Energy_Grid.pbix    # Main Power BI interactive dashboard file
-│   ├── European_Energy_Grid.pdf    # PDF export / printable view of the dashboard
+│   ├── European_Energy_Grid.pdf     # PDF export / printable view of the dashboard
+│   ├── dashboard_preview.mp4        # mp4 preview of the dashboard
 │   └── DAX_measures.txt             # Centralized repository of DAX measures & logic
 │
 ├── notebooks/

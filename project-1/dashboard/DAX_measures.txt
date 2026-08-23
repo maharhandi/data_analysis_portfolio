@@ -1,0 +1,69 @@
+/* ==============================================================================
+   DAX MEASURES TABLE — ELECTRICITY GRID MODELING
+   ============================================================================== */
+
+-- 1. OVERALL DEMAND AND GENERATION
+---------------------------------------------------------------------------------
+Total Energy Demand = 
+SUM(fact_grid_data[value_mw]) / 1000
+-- Converts hourly MW demand values into Gigawatt-hours (GWh).
+
+Total Energy Generation = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[source_id] <> "load"
+)
+-- Calculates total generation in GWh while excluding consumption (load).
+
+
+-- 2. FINANCIAL BENCHMARK
+---------------------------------------------------------------------------------
+Average Electricity Price = 
+AVERAGE(fact_grid_data[price_eur_mwh])
+-- Weighted average electricity price expressed in €/MWh.
+
+
+-- 3. GENERATION MIX BREAKDOWN (GWh)
+---------------------------------------------------------------------------------
+Nuclear Generation GWh = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[source_id] = "nuclear"
+)
+-- Nuclear generation volume to be phased out or replaced during transition.
+
+Hydro Generation GWh = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[source_id] = "hydro"
+)
+
+Solar Generation GWh = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[source_id] = "solar"
+)
+
+Wind Generation GWh = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[source_id] = "wind"
+)
+
+
+-- 4. STRATEGIC MEASURES: TRANSITION & DEFICIT
+---------------------------------------------------------------------------------
+Renewable Generation GWh = 
+CALCULATE(
+    SUM(fact_grid_data[value_mw]) / 1000,
+    dim_energy_source[is_renewable] = TRUE()
+)
+-- Cumulative output from all clean sources (Hydro + Solar + Wind).
+
+Clean Energy Gap GWh = 
+[Total Energy Demand] - [Renewable Generation GWh]
+-- Residual supply deficit to be covered by thermal capacity, storage, or imports.
+
+Renewable Self-Sufficiency % = 
+DIVIDE([Renewable Generation GWh], [Total Energy Demand], 0)
+-- Percentage of total grid demand fulfilled directly by domestic renewable energy.

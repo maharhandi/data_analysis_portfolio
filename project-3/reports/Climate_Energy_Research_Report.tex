@@ -1,0 +1,185 @@
+\documentclass[10pt,twocolumn,3p]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{geometry}
+\usepackage{cite}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{flafter}
+\usepackage{stfloats}
+\usepackage{adjustbox}
+\usepackage{placeins}
+
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+\geometry{top=0.75in,bottom=0.75in,left=0.75in,right=0.75in}
+
+\title{\textbf{Empirical Evaluation of Global $\mathbf{CO_2}$ Emissions and Surface Temperature Trajectories (1880--2024)}}
+\author{\textbf{Maha Rhandi}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report provides a clear, data-driven analysis of global warming dynamics and industrial energy consumption over a 145-year period (1880--2024). By combining NASA surface temperature measurements with global carbon dioxide ($\mathrm{CO_2}$) records from Our World in Data, the process by which human activity steadily reshapes the Earth's climate system is systematically explored. Robust statistical trend tests, linear regressions, rolling correlation metrics, and machine-learning outlier detection algorithms are applied. The empirical results demonstrate a clear, non-random upward trend in global temperatures that correlates strongly with historical emissions growth. Crucially, the rate of global warming accelerated significantly faster after 1975 compared to earlier historical periods.
+\end{abstract}
+
+\section{Introduction}
+Understanding climate change requires separating naturally occurring temperature fluctuations from long-term systematic trends caused by human industrial activity. Global surface temperature readings frequently vary from year to year due to natural climate events like volcanic eruptions or atmospheric cycles. However, multi-decadal observations reveal a remarkably consistent upward trajectory.
+
+In this study, the evolution of global land-ocean temperatures alongside industrial $\mathrm{CO_2}$ emissions, macroeconomic growth, and primary energy consumption is examined across 145 continuous observation years (1880--2024). The primary objective is to make these scientific findings easily understandable by combining formal statistical modeling with intuitive visual reporting.
+
+\section{Data and Methods}
+To evaluate historical climate drift, two primary scientific telemetry sources were merged:
+\begin{enumerate}
+    \item \textbf{NASA GISTEMP v4:} Global land-ocean surface temperature anomalies measured relative to the standard 1951--1980 baseline period.
+    \item \textbf{Our World in Data (OWID):} Historical fossil fuel combustion records, regional emissions totals, population statistics, and primary energy consumption patterns.
+\end{enumerate}
+
+To rigorously test whether global warming is a true non-random trend rather than stochastic noise, the non-parametric Mann-Kendall test statistic $S$ is computed:
+
+\begin{equation}
+S = \sum_{k=1}^{N-1} \sum_{j=k+1}^{N} \text{sgn}(x_j - x_k)
+\end{equation}
+
+\noindent where $x_j$ and $x_k$ represent sequential yearly observations. The corresponding standardized test statistic $Z$ determines statistical significance, while Sen's slope estimator calculates the median annual warming rate across the entire timeframe:
+
+\begin{equation}
+\beta_{\text{Sen}} = \text{median}\left( \frac{x_j - x_k}{j - k} \right) \quad \forall \, k < j
+\end{equation}
+
+\noindent Additionally, an Isolation Forest machine learning model is utilized to isolate historical climate outliers, and Ordinary Least Squares (OLS) regressions are executed to model the linear coupling between emissions and temperature anomalies.
+
+\section{Empirical Results and Visual Analysis}
+
+\subsection{Global Temperature Trajectory}
+Before quantifying formal trends, the raw temperature anomaly trajectory over time is inspected to observe how thermal conditions have shifted across generations.
+
+Figure~\ref{fig:temp_anomaly} illustrates the steady departure of global land-ocean temperatures from the 1951--1980 baseline reference level.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig1_global_temp_anomaly.png}
+\caption{Global surface temperature anomalies relative to the 1951--1980 average ($0.00\,^\circ\text{C}$ baseline), featuring a 10-year rolling moving average curve.}
+\label{fig:temp_anomaly}
+\end{figure}
+
+The visual evidence reveals that early 20th-century temperatures were consistently cooler than the mid-century average, whereas modern temperatures stand as the highest observed records in the entire historical dataset. The non-parametric Mann-Kendall test yields a test statistic of $Z = 16.892$ ($p < 10^{-15}$), confirming an overwhelmingly significant upward trend.
+
+\FloatBarrier
+\subsection{Emissions Coupling and Regional Contributions}
+Next, the strength of the correlation between temperature anomalies and carbon emissions is explored, followed by an examination of how different geographic regions contributed to global emissions growth over time.
+
+Figure~\ref{fig:co2_temp} models the relationship between global annual emissions and temperature anomalies using a linear regression model.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig2_co2_temp_correlation.png}
+\caption{Linear correlation between annual global $\mathrm{CO_2}$ emissions and surface temperature anomaly.}
+\label{fig:co2_temp}
+\end{figure}
+
+The regression analysis demonstrates a strong linear coupling ($R^2 = 0.873, p < 10^{-15}$), proving that higher global emissions consistently align with higher planetary surface temperatures.
+
+To understand the geographical origin of these emissions, Figure~\ref{fig:regional_co2} compares the historical output of major economic regions.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig3_regional_co2_trajectories.png}
+\caption{Annual $\mathrm{CO_2}$ emissions trajectories for key economic regions from 1880 to 2024.}
+\label{fig:regional_co2}
+\end{figure}
+
+Western economies like the United States and European Union produced the highest share of early industrial emissions. However, Asian economies grew substantially faster during the late 20th and early 21st centuries, leading to a major regional shift in global emissions output.
+
+\FloatBarrier
+\subsection{Temporal Correlation Dynamics and Indicator Relationships}
+To determine whether the coupling between carbon emissions and global temperature remained constant over time, rolling window correlations are calculated alongside broader macroeconomic indicators.
+
+Figure~\ref{fig:rolling_corr} traces the 20-year sliding Pearson correlation coefficient between emissions and temperature drift.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig4_rolling_correlation.png}
+\caption{20-year rolling Pearson correlation coefficient between emissions and global temperature anomalies.}
+\label{fig:rolling_corr}
+\end{figure}
+
+The rolling correlation metric displays a slight dip during mid-20th-century industrial aerosol cooling phases before rising to near-perfect correlation ($r > 0.85$) in recent decades.
+
+To examine how other global macro-indicators relate to this trend, Figure~\ref{fig:corr_matrix} presents a multi-variable correlation heatmap.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig5_correlation_matrix.png}
+\caption{Correlation heatmap comparing global $\mathrm{CO_2}$ emissions, temperature anomalies, population, GDP, and energy consumption.}
+\label{fig:corr_matrix}
+\end{figure}
+
+The heatmap confirms that global temperature anomalies correlate most strongly with cumulative energy consumption ($r = 0.94$) and world population growth ($r = 0.93$).
+
+\FloatBarrier
+\subsection{Anomaly Detection and Warming Acceleration}
+Finally, advanced machine learning algorithms are applied to isolate extreme historical weather years and evaluate whether global warming speeds up over time.
+
+Figure~\ref{fig:anomaly_det} highlights specific historical years flagged as statistical outliers by an Isolation Forest model.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig6_anomaly_detection.png}
+\caption{Isolation Forest outlier detection identifying unusual short-term temperature perturbations.}
+\label{fig:anomaly_det}
+\end{figure}
+
+The algorithm successfully identifies notable extreme weather events, such as historical El Niño spikes and volcanic cooling years, separating unusual yearly spikes from the long-term trend.
+
+To measure warming acceleration, Figure~\ref{fig:regime_shift} splits the temporal record into pre-1975 and post-1975 periods to test for structural regime shifts.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\columnwidth]{fig7_regime_shift_acceleration.png}
+\caption{Linear trend comparison showing warming rate acceleration pre-1975 vs. post-1975.}
+\label{fig:regime_shift}
+\end{figure}
+
+The quantitative slope comparison shows that post-1975 warming progressed substantially faster ($0.204\,^\circ\text{C}/\text{decade}$) than pre-1975 warming ($0.037\,^\circ\text{C}/\text{decade}$), representing a roughly $5.5\times$ acceleration in planetary temperature growth over recent decades.
+
+\FloatBarrier
+\section{Discussion and Conclusions}
+The statistical findings presented in this paper deliver clear empirical evidence of warming trends across the global environment. Table~\ref{tab:stat_summary} summarizes the core metrics derived from the analytical pipeline.
+
+\begin{table}[htbp]
+\centering
+\begin{adjustbox}{width=\columnwidth}
+\small
+\begin{tabular}{lccc}
+\toprule
+\textbf{Metric / Feature} & \textbf{Pre-1975} & \textbf{Post-1975} & \textbf{Full Range} \\
+\midrule
+Temp Trend ($Z$) & $5.120$ & $10.432$ & $16.892$ \\
+Warming Rate & $0.037\,^\circ\text{C}/\text{dec}$ & $0.204\,^\circ\text{C}/\text{dec}$ & $0.071\,^\circ\text{C}/\text{dec}$ \\
+Linear Coupling ($R^2$) & $0.342$ & $0.885$ & $0.873$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\caption{Summary of Scientific Statistical Metrics (1880--2024)}
+\label{tab:stat_summary}
+\end{table}
+
+In conclusion, global temperatures have increased significantly faster in the modern era than at any point during earlier industrial observations. Non-parametric hypothesis testing confirms that this upward warming trajectory is statistically significant ($p < 10^{-15}$). Future research will extend these methods to high-resolution spatial grid models to analyze localized thermal dynamics.
+
+\begin{thebibliography}{99}
+\bibitem{nasa2024} NASA Goddard Institute for Space Studies, \emph{GISS Surface Temperature Analysis (GISTEMP v4)}, 2024.
+\bibitem{owid2024} H. Ritchie, P. Rosado, and M. Roser, \emph{"Greenhouse Gas Emissions"}, Our World in Data, 2024.
+\bibitem{kendall1975} M. G. Kendall, \emph{Rank Correlation Methods}, Charles Griffin, London, 1975.
+\end{thebibliography}
+
+\end{document}

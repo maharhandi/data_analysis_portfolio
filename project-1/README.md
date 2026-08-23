@@ -105,14 +105,6 @@ project-1/
 │   ├── European_Energy_Grid.pdf    # PDF export / printable view of the dashboard
 │   └── DAX_measures.txt             # Centralized repository of DAX measures & logic
 │
-├── data/
-│   ├── processed/
-│   │   ├── cleaned_energy_data.csv  # Standardized post-cleaning dataset
-│   │   └── opsd_cleaned_wide.csv    # Wide-format pivot table for SQL staging
-│   └── raw/
-│       ├── energy_data.csv          # Raw regional grid extraction
-│       └── opsd_energy_raw.csv      # Open Power System Data (OPSD) raw source file
-│
 ├── notebooks/
 │   └── cleaning.py                  # Python Pandas ETL script for data preprocessing
 │

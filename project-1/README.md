@@ -5,7 +5,14 @@
 This end-to-end **data engineering and analytics project** models European electricity grid data to evaluate national clean-energy transition targets.
 
 Using a multi-stage **Python & PostgreSQL data pipeline** and an interactive **Power BI executive dashboard**, the analysis quantifies the **"Renewable Gap"** — the structural deficit between total electricity demand and available clean-energy generation.
+---
 
+## 📽️ Interactive Dashboard Preview
+
+![European Energy Grid Power BI Dashboard](./dashboard/dashboard_preview.mp4)
+
+> 💡 *Note: The interactive `.pbix` file is available in the [`/dashboard/`](./dashboard/) directory.*
+> 
 ---
 
 ## 🔑 Key Analytical Insights

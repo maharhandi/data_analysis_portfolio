@@ -98,15 +98,6 @@ All high-resolution figures are generated during analysis and stored in `reports
 ```text
 project-3/
 │
-├── data/
-│   ├── raw/
-│   │   ├── owid_co2_data.csv
-│   │   └── noaa_global_temp.csv
-│   │
-│   └── processed/
-│       ├── climate_energy_global_merged.csv
-│       └── climate_energy_by_country.csv
-│
 ├── notebooks/
 │   ├── 01_data_acquisition_cleaning.ipynb
 │   ├── 02_exploratory_statistical_analysis.ipynb

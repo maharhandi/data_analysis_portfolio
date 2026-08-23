@@ -19,8 +19,8 @@ Welcome to my Data Analytics portfolio repository! This workspace contains relat
 | Project | Domain / Topic | Key Tools | Status |
 |---------|----------------|-----------|--------|
 | **[Project 1](./project-1/)** | European Energy Grid Analytics | PostgreSQL, Python, Power BI, DAX | ✅ Done |
-| **[Project 2](./project-2/)** | Industrial Predictive Maintenance | Python, SciPy, Regression | ⏳ On going|
-| **[Project 3](./project-3/)** | Scientific / Research Data Analysis | Python, R, LaTeX Report | ⏳ On going |
+| **[Project 2](./project-2/)** | Industrial Predictive Maintenance | Python, SciPy, Regression | ✅ Done |
+| **[Project 3](./project-3/)** | Scientific / Research Data Analysis | Python, R, LaTeX Report | ✅ Done |
 
 ---
 

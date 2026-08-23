@@ -9,7 +9,7 @@ Using a multi-stage **Python & PostgreSQL data pipeline** and an interactive **P
 
 ## 📽️ Interactive Dashboard Preview
 
-![European Energy Grid Power BI Dashboard](./dashboard/dashboard_preview.mp4)
+![European Energy Grid Power BI Dashboard](./dashboard/dashboard_preview.gif)
 
 > 💡 *Note: The interactive `.pbix` file is available in the [`/dashboard/`](./dashboard/) directory.*
 > 

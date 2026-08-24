@@ -101,7 +101,22 @@ to assess whether clean energy can systematically cover peak winter demand witho
 | **Business Intelligence** | Power BI Desktop |
 | **Analytics & DAX** | Power Query, DAX Measures |
 | **Domain** | European Energy Grid & Electricity Markets |
+
 ---
+
+## 📦 Data Source & Access
+
+Due to GitHub repository file size limits, the raw multi-gigabyte source datasets are excluded from this repository via `.gitignore`. 
+
+You can download the original, uncompressed data directly from the official source to reproduce the pipeline locally:
+
+* **Primary Dataset:** Open Power System Data (OPSD) — *Time series of European electricity generation, load, and prices*
+* **Source Provider:** [Open Power System Data Portal](https://data.open-power-system-data.org/time_series/)
+* **Format:** CSV (Hourly granularity, 2015–2020)
+* **Local Staging Directory:** Place downloaded raw files into `./data/raw/` before running the Python extraction scripts in `./notebooks/cleaning.py`.
+
+---
+
 ## 📂 Project Structure
 
 ```text

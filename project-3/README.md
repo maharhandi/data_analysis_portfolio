@@ -93,6 +93,25 @@ All high-resolution figures are generated during analysis and stored in `reports
 
 ---
 
+## 📦 Data Source & Reproducibility
+
+To ensure strict adherence to open science standards and keep the repository lightweight, raw time-series data files are excluded via `.gitignore`. 
+
+The analytical pipeline processes public observational climate data:
+
+* **Primary Dataset:** NASA GISS Surface Temperature Analysis (GISTEMP v4) / NOAA Climate at a Glance
+* **Data Provider:** [NASA Goddard Institute for Space Studies](https://data.giss.nasa.gov/gistemp/) & [NOAA NCEI](https://www.ncei.noaa.gov/)
+* **Metrics:** Monthly & Annual Global Land-Ocean Temperature Anomalies (1880–Present, relative to 1951–1980 baseline)
+* **Local Data Setup:** Place raw `.csv` or tabular files into `./data/raw/` before running the analysis scripts in `./notebooks/`.
+
+---
+
+### 🔬 Academic Citation
+
+> NASA GISTEMP Team (2024). *GISS Surface Temperature Analysis (GISTEMP), version 4*. NASA Goddard Institute for Space Studies. Dataset accessed for non-parametric statistical modeling (Mann-Kendall & Sen's Slope).
+
+---
+
 # 📁 Project Structure
 
 ```text
